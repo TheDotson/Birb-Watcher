@@ -1,5 +1,5 @@
 {
-  "name": "scat-surprise",
+  "name": "birb-watcher",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
