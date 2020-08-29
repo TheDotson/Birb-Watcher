@@ -3,7 +3,9 @@ import React from 'react';
 class NewBirb extends React.Component {
   render() {
     return (
-      <h2>NewBirb</h2>
+      <div className="NewBirb">
+        <h1>NewBirb</h1>
+      </div>
     );
   }
 }
