@@ -7,13 +7,16 @@ import {
 } from 'react-router-dom';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-import fbConnection from '../helpers/data/connection';
+
 import Auth from '../components/pages/Auth/Auth';
 import EditBirb from '../components/pages/EditBirb/EditBirb';
 import Home from '../components/pages/Home/Home';
 import MyNavbar from '../components/pages/MyNavbar/MyNavbar';
 import NewBirb from '../components/pages/NewBirb/NewBirb';
 import SingleBirb from '../components/pages/SingleBirb/SingleBirb';
+
+import fbConnection from '../helpers/data/connection';
+
 import './App.scss';
 
 fbConnection();
@@ -24,6 +27,7 @@ const PublicRoute = ({ component: Component, authed, ...rest }) => {
     : (<Redirect to={{ pathname: '/home', state: { from: props.location } }} />));
   return <Route {...rest} render={(props) => routeChecker(props)} />;
 };
+
 const PrivateRoute = ({ component: Component, authed, ...rest }) => {
   const routeChecker = (props) => (authed === true
     ? (<Component {...props} />)
@@ -63,9 +67,9 @@ class App extends React.Component {
                 <PrivateRoute path="/home" component={Home} authed={authed} />
                 <PrivateRoute path="/new" component={NewBirb} authed={authed} />
                 <PrivateRoute path="/edit/:birbId" component={EditBirb} authed={authed} />
-                <PrivateRoute path="/birbs:birbId" component={SingleBirb} authed={authed} />
+                <PrivateRoute path="/birbs/:birbId" component={SingleBirb} authed={authed} />
                 <PublicRoute path="/auth" component={Auth} authed={authed} />
-                <Redirect from="*" to="/home" />
+                <Redirect from="*" to="/home"/>
               </Switch>
             </div>
           </React.Fragment>
