@@ -12,4 +12,4 @@ const birbShape = PropTypes.shape({
   wasSleeping: PropTypes.bool.isRequired,
 });
 
-export default birbShape;
+export default { birbShape };
