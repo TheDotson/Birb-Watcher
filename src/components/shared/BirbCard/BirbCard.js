@@ -1,10 +1,18 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import birbShape from '../../../helpers/props/birdShape';
 
 class BirbCard extends React.Component {
   static propTypes = {
     birb: birbShape.birbShape,
+    deleteBirb: PropTypes.func.isRequired,
+  }
+
+  deleteBirbEvent = (e) => {
+    e.preventDefault();
+    const { birb, deleteBirb } = this.props;
+    deleteBirb(birb.id);
   }
 
   render() {
@@ -19,6 +27,7 @@ class BirbCard extends React.Component {
           <p className="card-text">{birb.notes}</p>
           <Link to={singleBirbLink} className="btn btn-secondary"><i className="far fa-eye"></i></Link>
           <Link to={editLink} className="btn btn-warning"><i className="far fa-edit"></i></Link>
+          <button className="btn btn-danger" onClick={this.deleteBirbEvent}><i className="fas fa-trash-alt"></i></button>
         </div>
       </div>
     );

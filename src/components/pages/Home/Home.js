@@ -8,15 +8,27 @@ class Home extends React.Component {
     birbs: [],
   }
 
-  componentDidMount() {
+  getBirbs = () => {
     birbData.getBirbsByUid(authData.getUid())
       .then((birbs) => this.setState({ birbs }))
-      .catch((err) => console.error('Get birbs failed', err));
+      .catch((err) => console.error(err));
+  }
+
+  componentDidMount() {
+    this.getBirbs();
+  }
+
+  deleteBirb = (birbId) => {
+    birbData.deleteBirb(birbId)
+      .then(() => {
+        this.getBirbs();
+      })
+      .catch((err) => console.error('Delete birb failed', err));
   }
 
   render() {
     const { birbs } = this.state;
-    const birbCards = birbs.map((birb) => <BirbCard key={birb.id} birb={birb}/>);
+    const birbCards = birbs.map((birb) => <BirbCard key={birb.id} birb={birb} deleteBirb={this.deleteBirb}/>);
 
     return (
       <div className="Home">
