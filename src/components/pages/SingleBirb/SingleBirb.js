@@ -36,7 +36,8 @@ class SingleBirb extends React.Component {
 
   render() {
     const { birb } = this.state;
-    const editBirbLink = `/edit/${birb.id}`;
+    const { birbId } = this.props.match.params;
+    const editBirbLink = `/edit/${birbId}`;
 
     return (
       <div className="SingleBirb mt-3 p-3 bg-light rounded">
@@ -47,9 +48,9 @@ class SingleBirb extends React.Component {
         <p>Last seen on: {moment(birb.seenAt).format('MMMM Do YYYY, h:mma')}</p>
         <p>Note: {birb.notes}</p>
         <p>Was Sleeping: {birb.wasSleeping ? 'Yes' : 'No'}</p>
-        <Link to={editBirbLink} className='btn btn-warning' >Edit Birb</Link>
+        <Link to={editBirbLink} className='btn btn-warning' ><i className="far fa-edit"></i></Link>
         <button className="btn btn-danger" onClick={this.deleteBirbEvent}><i className="fas fa-trash-alt"></i></button>
-    </div>
+      </div>
     );
   }
 }
