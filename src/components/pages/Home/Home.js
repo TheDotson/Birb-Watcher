@@ -2,6 +2,7 @@ import React from 'react';
 import authData from '../../../helpers/data/authData';
 import birbData from '../../../helpers/data/birbData';
 import BirbCard from '../../shared/BirbCard/BirbCard';
+import './Home.scss';
 
 class Home extends React.Component {
   state = {
@@ -33,7 +34,9 @@ class Home extends React.Component {
     return (
       <div className="Home">
         <h1><span role="img" aria-label="birb emoji">🐦</span> <span role="img" aria-label="house emoji">🏚</span></h1>
-        {birbCards}
+        <div className="birdCage">
+          {birbCards}
+        </div>
       </div>
     );
   }
